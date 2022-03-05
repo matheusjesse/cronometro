@@ -2,8 +2,12 @@ import React from "react";
 
 class Cronometro extends React.Component {
   render() {
+    const {
+      cronometroMin,
+    } = this.props
     return (
-      <div> Cronômetro! </div>
+      <div name="cronometroMin">{ cronometroMin }</div>
+  
     );
   }
 }
