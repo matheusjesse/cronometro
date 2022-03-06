@@ -1,5 +1,6 @@
 import Cronometro from './components/Cronometro';
 import PresetMin from './components/PresetMin';
+import Start from './components/Start';
 import './App.css';
 import React from 'react';
 
@@ -40,6 +41,7 @@ class App extends React.Component {
           presetMinTres={ presetMinTres }        
           presetMinSeis={ presetMinSeis }
         />
+        <Start />
       </>
     );
   }    
