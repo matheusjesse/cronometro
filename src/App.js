@@ -19,19 +19,25 @@ class App extends React.Component {
   }
 
   handleClick({ target }) {
+    //const { name, value } = target;
     const { cronometroMin, } = this.state;
     const acc = parseFloat(cronometroMin) + parseFloat(target.value);
     this.setState({cronometroMin: acc})
   }
 
   render() {
-    const { cronometroMin, presetMinUm } = this.state;
+    const { cronometroMin, presetMinUm, presetMinTres, presetMinSeis } = this.state;
     return (
       <>
         <Cronometro 
           cronometroMin={ cronometroMin }
         />
-        <PresetMin presetMinUm={ presetMinUm } handleClick={ this.handleClick } />
+        <PresetMin 
+          handleClick={ this.handleClick } 
+          presetMinUm={ presetMinUm }
+          presetMinTres={ presetMinTres }        
+          presetMinSeis={ presetMinSeis }
+        />
       </>
     );
   }    
