@@ -19,7 +19,9 @@ class App extends React.Component {
   }
 
   handleClick({ target }) {
-    console.log('a');
+    const { cronometroMin, } = this.state;
+    const acc = parseFloat(cronometroMin) + parseFloat(target.value);
+    this.setState({cronometroMin: acc})
   }
 
   render() {
