@@ -6,6 +6,9 @@ import React from 'react';
 class App extends React.Component {
   constructor() {
     super();
+
+    this.handleClick = this.handleClick.bind(this);
+
     this.state = {
       cronometroMin: '0',
       presetMinUm: '1',
@@ -15,6 +18,10 @@ class App extends React.Component {
     };
   }
 
+  handleClick({ target }) {
+    console.log('a');
+  }
+
   render() {
     const { cronometroMin, presetMinUm } = this.state;
     return (
@@ -22,7 +29,7 @@ class App extends React.Component {
         <Cronometro 
           cronometroMin={ cronometroMin }
         />
-        <PresetMin presetMinUm={ presetMinUm } />
+        <PresetMin presetMinUm={ presetMinUm } handleClick={ this.handleClick } />
       </>
     );
   }    
