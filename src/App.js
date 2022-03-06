@@ -11,6 +11,7 @@ class App extends React.Component {
 
     this.state = {
       cronometroMin: '0',
+      cronometroSec: '0',
       presetMinUm: '1',
       presetMinTres: '3',
       presetMinSeis: '6',
@@ -26,11 +27,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { cronometroMin, presetMinUm, presetMinTres, presetMinSeis } = this.state;
+    const { cronometroMin, cronometroSec, presetMinUm, presetMinTres, presetMinSeis } = this.state;
     return (
       <>
         <Cronometro 
           cronometroMin={ cronometroMin }
+          cronometroSec={ cronometroSec }
         />
         <PresetMin 
           handleClick={ this.handleClick } 
