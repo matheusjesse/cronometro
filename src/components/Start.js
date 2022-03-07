@@ -2,8 +2,9 @@ import React from "react";
 
 class Start extends React.Component {
   render() {
+    const { handleCronometro } =this.props;
     return (
-      <input type='button' value="Start" />
+      <input type='button' onClick={handleCronometro} value="Start" />
     );
   }
 }
