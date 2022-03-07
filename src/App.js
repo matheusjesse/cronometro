@@ -18,13 +18,14 @@ class App extends React.Component {
       presetMinTres: '3',
       presetMinSeis: '6',
       presetSec: '30',
+      buttonDisabled: false,
     };
   }
 
   handleClick({ target }) {
     //const { name, value } = target;
     const { cronometroMin, } = this.state;
-    const acc = parseFloat(cronometroMin) + parseFloat(target.value);    
+    const acc = parseFloat(cronometroMin) + parseFloat(target.value);       
     if(acc < 10) {
       this.setState({cronometroMin: `0${acc}`});
     }else{
@@ -33,13 +34,20 @@ class App extends React.Component {
   }
 
   handleCronometro() {
-    const { cronometroMin, cronometroSec } = this.state;
+    const { cronometroMin, cronometroSec, buttonDisabled } = this.state;
 
     const sec = parseFloat(cronometroSec);
     const min = parseFloat(cronometroMin);
+    
+    if(buttonDisabled === false) {
+      this.setState({ buttonDisabled: true });
+    }
 
     if (sec > 0) {
       this.setState( { cronometroSec: sec -1 } );
+      if(sec < 10) {
+        this.setState({ cronometroSec:`0${sec -1}`})
+      }
     } else if ( min > 0) {
       this.setState( { cronometroSec: '59' } );
       if(min < 10) {
@@ -51,7 +59,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { cronometroMin, cronometroSec, presetMinUm, presetMinTres, presetMinSeis } = this.state;
+    const { buttonDisabled, cronometroMin, cronometroSec, presetMinUm, presetMinTres, presetMinSeis } = this.state;
     return (
       <>
         <Cronometro 
@@ -63,9 +71,11 @@ class App extends React.Component {
           presetMinUm={ presetMinUm }
           presetMinTres={ presetMinTres }        
           presetMinSeis={ presetMinSeis }
+          buttonDisabled={ buttonDisabled }
         />
         <Start
           handleCronometro={ this.handleCronometro }
+          buttonDisabled={ buttonDisabled }
         />
       </>
     );
