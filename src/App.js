@@ -1,6 +1,7 @@
 import Cronometro from './components/Cronometro';
 import PresetMin from './components/PresetMin';
 import Start from './components/Start';
+import Restart from './components/Restart';
 import './App.css';
 import React from 'react';
 
@@ -76,6 +77,8 @@ class App extends React.Component {
         <Start
           handleCronometro={ this.handleCronometro }
           buttonDisabled={ buttonDisabled }
+        />
+        <Restart
         />
       </>
     );
