@@ -2,6 +2,7 @@ import Cronometro from './components/Cronometro';
 import PresetMin from './components/PresetMin';
 import Start from './components/Start';
 import Restart from './components/Restart';
+import PresetSec from './components/PresetSec';
 import './App.css';
 import React from 'react';
 
@@ -12,6 +13,7 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleCronometro = this.handleCronometro.bind(this);
     this.handleRestart= this.handleRestart.bind(this);
+    this.handleClickSec= this.handleClickSec.bind(this);
 
     this.state = {
       cronometroMin: '00',
@@ -40,6 +42,31 @@ class App extends React.Component {
     }
   }
 
+  handleClickSec() {
+    const { cronometroMin, cronometroSec, presetSec } = this.state;  
+    const sec = parseFloat(cronometroSec);
+    const trintasec = parseFloat(presetSec);
+    const totalMinutes = parseFloat(cronometroMin);
+    if( sec === 0 ){
+      this.setState({ 
+        cronometroSec: sec + trintasec,
+      });
+    } else {
+      if(totalMinutes < 10) {
+        this.setState({
+          cronometroMin: `0${totalMinutes + 1}`,
+          cronometroSec: '00',
+        })
+      } else if( totalMinutes === 10) {
+        this.setState({
+          cronometroMin: totalMinutes + 1,
+          cronometroSec: '00',
+        })
+      }
+    }
+
+  }
+
   handleCronometro() {
     const { cronometroMin, cronometroSec, buttonDisabled, cronometroOn } = this.state;
 
@@ -59,6 +86,8 @@ class App extends React.Component {
       this.setState( { cronometroSec: '59' } );
       if(min < 10) {
         this.setState({ cronometroMin:`0${min -1}`})
+      } else {
+        this.setState({ cronometroMin: min -1})
       }
     }
     
@@ -75,13 +104,20 @@ class App extends React.Component {
         buttonDisabled: false, 
         cronometroMin: '00',
         cronometroSec: '00',
-        presetSec: '00',
+        presetSec: '30',
         cronometroOn: false});
     }
   }
 
   render() {
-    const { buttonDisabled, cronometroMin, cronometroSec, presetMinUm, presetMinTres, presetMinSeis } = this.state;
+    const { 
+      buttonDisabled,
+      cronometroMin, 
+      cronometroSec, 
+      presetSec, 
+      presetMinUm, 
+      presetMinTres, 
+      presetMinSeis } = this.state;
     return (
       <>
         <Cronometro 
@@ -93,6 +129,11 @@ class App extends React.Component {
           presetMinUm={ presetMinUm }
           presetMinTres={ presetMinTres }        
           presetMinSeis={ presetMinSeis }
+          buttonDisabled={ buttonDisabled }
+        />
+        <PresetSec 
+          presetSec= { presetSec }
+          handleClickSec={ this.handleClickSec }
           buttonDisabled={ buttonDisabled }
         />
         <Start
