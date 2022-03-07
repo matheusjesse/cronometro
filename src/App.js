@@ -28,7 +28,7 @@ class App extends React.Component {
   handleClick({ target }) {
     //const { name, value } = target;
     const { cronometroMin, cronometroOn } = this.state;
-    const acc = parseFloat(cronometroMin) + parseFloat(target.value);
+    const acc = parseFloat(cronometroMin) + parseFloat(target.name);
     
     if(cronometroOn === false) {
       this.setState({ cronometroOn: true});   
